@@ -6,22 +6,173 @@
         
     </head>
     <style>
-        h1 { color:yellow 
+        h1 { color:rgb(255, 225, 0);
+            text-align: center;
         }
         strong { color:red
 
         }
-        body { background-color: rgb(97,250,255);
+        body { background-color: rgb(0,0,128);
+        }
+
+        h2 {
+        color: rgb(255, 225, 0); 
+        text-align: center;
+        font-size: 2em;
+        margin: 20px 0;
+        }
+
+        .warpper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        .tab {
+        cursor: pointer;
+        padding: 10px 20px; 
+        margin: 0px 2px;
+        background: #32557f;
+        display: inline-block;
+        color: #fff;
+        border-radius: 3px 3px 0px 0px;
+        box-shadow: 0 0.5rem 0.8rem #00000080;
+        }
+
+        .panels {
+            background-color: rgb(0,0,128);
+        box-shadow: 0 2rem 2rem rgb(255, 225, 0);
+        min-height: 200px;
+        width: 100%;
+        max-width: 1500px;
+        border-radius: 3px;
+        overflow: hidden;
+        padding: 20px;
+        }
+
+        .panel {
+        display: none;
+        animation: fadein 0.8s;
+        }
+
+        @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+        }
+
+        .panel-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: rgb(255, 225, 0);
+        }
+
+        .radio {
+        display: none;
+        }
+
+        #one:checked ~ .panels #one-panel,
+        #two:checked ~ .panels #two-panel,
+        #three:checked ~ .panels #three-panel {
+        display: block;
+        }
+
+        #one:checked ~ .tabs #one-tab,
+        #two:checked ~ .tabs #two-tab,
+        #three:checked ~ .tabs #three-tab {
+        background: #fff;
+        color: #000;
+        border-top: 3px solid #32557f;
+        }
+        p {
+            color: rgb(255, 225, 0);
         }
     </style>
+
     <body>
         <h1>hi<h1>
         <h1> Hello and welcome to my website </h1> 
-        <h2> I will be showing you how to subscribe to my <strong> YouTube: https://www.youtube.com/jacobtasticyt </strong>
-        <a src="example.com">test</a>
+        <h2> I will be showing you how to subscribe to my 
+        <strong> <a href="https://www.youtube.com/jacobtasticyt">YouTube </a> </strong>
+        <a href="example.com">test</a>
         </h2>
     <h3> lolololol <h3>
+
+        <h1>The Jacobtastic Website</h1>
+        <div class="warpper">
+          <input class="radio" id="one" name="group" type="radio" checked>
+          <input class="radio" id="two" name="group" type="radio">
+          <input class="radio" id="three" name="group" type="radio">
         
-    
+          <div class="tabs">
+            <label class="tab" id="one-tab" for="one">Fortnite</label>
+            <label class="tab" id="two-tab" for="two">X</label>
+            <label class="tab" id="three-tab" for="three">Weather</label>
+          </div>
+        
+          <div class="panels">
+            <div class="panel" id="one-panel">
+                <div class="panel-title">Fortnite</div>
+        <script src="https://apis.google.com/js/platform.js"></script>
+        <div class="g-ytsubscribe" data-channelid="UCK1_8q0YhMZmXZXP7HEFJDQ" data-layout="full" data-count="default"></div>
+              
+              <p>Go check this link to see if I'm live on YouTube! \/</p>
+
+        <iframe width="560" height="315" src="https://youtube.com/embed/bhnMUkv-r2c?feature=share" 
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+        gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              
+              <p>Also go check out the best video ever made:</p>
+        <iframe width="1120" height="630" src="https://www.youtube.com/embed/YWURUg5RS2M?si=0wtRwGKtgdGAfroq" 
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+        gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+       
+            <!-- start of cool clips-->>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/YWURUg5RS2M?si=0wtRwGKtgdGAfroq&amp;start=140" 
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+        gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+
+            </div>
+            <div class="panel" id="two-panel">
+              <div class="panel-title">Twitter/X</div>
+              <p>Follow me on X!</p>
+
+        <a href="https://twitter.com/Jacobtastic1" class="twitter-follow-button" data-size="large" data-lang="en" 
+        data-show-count="false">Follow @Jacobtastic1</a><script async src="https://platform.twitter.com/widgets.js" 
+        charset="utf-8"></script>
+
+        <a href="https://twitter.com/intent/tweet?button_hashtag=Trump2024&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #Trump2024</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <!-- <iframe width="560" height="315" src="https://x.com/joeroganhq/status/1858166819544240607" 
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+        gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+      
+        <blockquote class="twitter-tweet"><p lang="en" dir="ltr">What a night!
+        <a href="https://twitter.com/hashtag/TrumpDance?src=hash&amp;ref_src=twsrc%5Etfw">#TrumpDance</a> 
+        🇺🇸 <a href="https://t.co/CsGeu3lH6I">pic.twitter.com/CsGeu3lH6I</a></p>&mdash; Joe Rogan Podcast (@joeroganhq) 
+        <a href="https://twitter.com/joeroganhq/status/1858166819544240607?ref_src=twsrc%5Etfw">November 17, 2024</a>
+        </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      
+        
+      
+        
+
+            </div>
+            <div class="panel" id="three-panel">
+              <div class="panel-title">Weather</div>
+              <p>Content3</p>
+
+              <a href="http://origin.wpc.ncep.noaa.gov/basicwx/allfcsts_loop_ndfd.gif" target="_blank">
+                <img alt="" class="style6" src="http://origin.wpc.ncep.noaa.gov/basicwx/allfcsts_loop_ndfd.gif" style="border: 1px solid #FF0000; width: 1000px; "></a>
+            </div>
+          </div>
+        </div>
+
+
+
     </body>
 </html>
