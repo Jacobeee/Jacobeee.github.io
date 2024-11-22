@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    
+        <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
     </head>
@@ -76,13 +76,15 @@
 
         #one:checked ~ .panels #one-panel,
         #two:checked ~ .panels #two-panel,
-        #three:checked ~ .panels #three-panel {
+        #three:checked ~ .panels #three-panel,
+        #four:checked ~ .panels #four-panel {
         display: block;
         }
 
         #one:checked ~ .tabs #one-tab,
         #two:checked ~ .tabs #two-tab,
-        #three:checked ~ .tabs #three-tab {
+        #three:checked ~ .tabs #three-tab,
+        #four:checked ~ .tabs #four-tab {
         background: #fff;
         color: #000;
         border-top: 3px solid #32557f;
@@ -93,24 +95,26 @@
     </style>
 
     <body>
-        <h1>hi<h1>
+        <!-- <h1>hi<h1>
         <h1> Hello and welcome to my website </h1> 
         <h2> I will be showing you how to subscribe to my 
         <strong> <a href="https://www.youtube.com/jacobtasticyt">YouTube </a> </strong>
         <a href="example.com">test</a>
         </h2>
-    <h3> lolololol <h3>
+    <h3> lolololol <h3> -->
 
         <h1>The Jacobtastic Website</h1>
         <div class="warpper">
           <input class="radio" id="one" name="group" type="radio" checked>
           <input class="radio" id="two" name="group" type="radio">
           <input class="radio" id="three" name="group" type="radio">
+          <input class="radio" id="four" name="group" type="radio">
         
           <div class="tabs">
             <label class="tab" id="one-tab" for="one">Fortnite</label>
             <label class="tab" id="two-tab" for="two">X</label>
             <label class="tab" id="three-tab" for="three">Weather</label>
+            <label class="tab" id="four-tab" for="four">Pizza?</label>
           </div>
         
           <div class="panels">
@@ -169,6 +173,61 @@
               <a href="http://origin.wpc.ncep.noaa.gov/basicwx/allfcsts_loop_ndfd.gif" target="_blank">
                 <img alt="" class="style6" src="http://origin.wpc.ncep.noaa.gov/basicwx/allfcsts_loop_ndfd.gif" style="border: 1px solid #FF0000; width: 1000px; "></a>
             </div>
+
+            <div class="panel" id="four-panel">
+                <div class="panel-title">Pizza?</div>
+                <p>Is there half off pizza at Papa Johns tonight?</p>
+                
+                <!-- <script>  -->
+                    <div id="wg-api-hockey-games",
+                        data-host="v1.hockey.api-sports.io"
+                        data-key="7b3de4b2fe82046e26a282bdd31158d7"
+                        data-date="2024-11-21"
+                        data-league="57"
+                        data-season="2024"
+                        data-theme=""
+                        data-refresh="15"
+                        data-show-toolbar="true"
+                        data-show-errors="false"
+                        data-show-logos="true"
+                        data-modal-game="true"
+                        data-modal-standings="true"
+                        data-modal-show-logos="true">
+                    </div>
+                    <!-- type="module"
+                    src="https://widgets.api-sports.io/2.0.3/widgets.js"> -->
+                    
+                    <script> document.addEventListener("DOMContentLoaded", function () { 
+                        fetch("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/teams/tb/schedule") 
+                        .then(response => response.json()) 
+                        .then(data => { 
+                            const games = data.events; 
+                            if (games.length > 0) { 
+                                const lastGame = games[games.length - 1]; 
+                                const lastGameDate = new Date(lastGame.date); 
+                                const yesterday = new Date(); 
+                                yesterday.setDate(yesterday.getDate() - 1); 
+
+                                if (lastGameDate.toDateString() === yesterday.toDateString()) { 
+                                    const outcome = lastGame.competitions[0].competitors.find( 
+                                        team => team.team.abbreviation === "TB" )
+                                    .win ? "won" : "lost"; document.getElementById("result").
+                                    textContent = `The Tampa Bay Lightning ${outcome} yesterday!`; } 
+                                    else { 
+                                        document.getElementById("result").textContent = 
+                                        "The Tampa Bay Lightning did not play yesterday."; } 
+                                    } else { document.getElementById("result").textContent = 
+                                        "No recent game information available."; 
+
+                                    } }) 
+                                    .catch(error => { 
+                                        console.error("Error fetching data:", error); 
+                                        document.getElementById("result").textContent = 
+                                        "Unable to retrieve game information."; }); });
+                    </script>
+                <a> Text content </a>
+
+              </div>
           </div>
         </div>
 
