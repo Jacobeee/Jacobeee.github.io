@@ -92,6 +92,10 @@
         p {
             color: rgb(255, 225, 0);
         }
+        .win { color: green; } .loss { color: red; }
+        body {
+            color: rgb(255, 225, 0);
+        }
     </style>
 
     <body>
@@ -161,10 +165,6 @@
         <a href="https://twitter.com/joeroganhq/status/1858166819544240607?ref_src=twsrc%5Etfw">November 17, 2024</a>
         </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       
-        
-      
-        
-
             </div>
             <div class="panel" id="three-panel">
               <div class="panel-title">Weather</div>
@@ -177,56 +177,116 @@
             <div class="panel" id="four-panel">
                 <div class="panel-title">Pizza?</div>
                 <p>Is there half off pizza at Papa Johns tonight?</p>
-                
-                <!-- <script>  -->
-                    <div id="wg-api-hockey-games",
-                        data-host="v1.hockey.api-sports.io"
-                        data-key="7b3de4b2fe82046e26a282bdd31158d7"
-                        data-date="2024-11-21"
-                        data-league="57"
-                        data-season="2024"
-                        data-theme=""
-                        data-refresh="15"
-                        data-show-toolbar="true"
-                        data-show-errors="false"
-                        data-show-logos="true"
-                        data-modal-game="true"
-                        data-modal-standings="true"
-                        data-modal-show-logos="true">
-                    </div>
-                    <!-- type="module"
-                    src="https://widgets.api-sports.io/2.0.3/widgets.js"> -->
-                    
-                    <script> document.addEventListener("DOMContentLoaded", function () { 
+                    <div id="result"></div>
+
+                    <!-- script for finding Tampa Bay Lightning games -->
+                    <script>
+                        var result1 = false;
+                        var result2 = false;
+                        window.onload = function() {
                         fetch("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/teams/tb/schedule") 
                         .then(response => response.json()) 
                         .then(data => { 
                             const games = data.events; 
-                            if (games.length > 0) { 
-                                const lastGame = games[games.length - 1]; 
+                            const now = new Date();
+                            const gamesPast = games.filter(game => new Date(game.date) < now);
+                            const resultElement = document.getElementById("result");
+                            
+                            
+                            if (gamesPast.length > 0) { 
+                                const lastGame = gamesPast[gamesPast.length - 1]; 
                                 const lastGameDate = new Date(lastGame.date); 
                                 const yesterday = new Date(); 
                                 yesterday.setDate(yesterday.getDate() - 1); 
-
+                                // alert(lastGameDate);
+                                // alert(gamesPast);
                                 if (lastGameDate.toDateString() === yesterday.toDateString()) { 
-                                    const outcome = lastGame.competitions[0].competitors.find( 
-                                        team => team.team.abbreviation === "TB" )
-                                    .win ? "won" : "lost"; document.getElementById("result").
-                                    textContent = `The Tampa Bay Lightning ${outcome} yesterday!`; } 
+                                    // const outcome = lastGame.competitions[0].competitors.find( 
+                                    //     team => team.team.abbreviation === "TB" )
+                                    // .win ? "won" : "lost"; document.getElementById("result").
+                                    // textContent = `The Tampa Bay Lightning ${outcome} yesterday!`;
+                                    
+                                    const tampaBayL = lastGame.competitions[0].competitors.find( team => team.team.abbreviation === "TB" );
+                                    const opponent = lastGame.competitions[0].competitors.find( team => team.team.abbreviation !== "TB" ); 
+                                    const outcome = tampaBayL.winner ? "won" : "lost"; 
+                                    resultElement.innerHTML += `The Tampa Bay Lightning ${outcome} against the ${opponent.team.displayName} yesterday!<br>`;
+                                    if (outcome == "won") {
+                                        result1 = true;
+                                        alert(true);
+                                    }
+                                    
+                                 } 
                                     else { 
-                                        document.getElementById("result").textContent = 
+                                        document.getElementById("result").textContent += 
                                         "The Tampa Bay Lightning did not play yesterday."; } 
-                                    } else { document.getElementById("result").textContent = 
-                                        "No recent game information available."; 
-
+                                    } else { document.getElementById("result").textContent += 
+                                        "No recent game information available.";
                                     } }) 
                                     .catch(error => { 
                                         console.error("Error fetching data:", error); 
-                                        document.getElementById("result").textContent = 
-                                        "Unable to retrieve game information."; }); });
-                    </script>
-                <a> Text content </a>
+                                        document.getElementById("result").textContent += 
+                                        "Unable to retrieve game information."; }); };
+                    
+                
+                    //<!-- script for finding Orlando Magic games -->
 
+                    
+                        //window.onload = function() {
+                        fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/orl/schedule") 
+                        .then(response => response.json()) 
+                        .then(data => { 
+                            const gamesB = data.events; 
+                            const now = new Date();
+                            const gamesPastB = gamesB.filter(game => new Date(game.date) < now);
+                            const resultElementB = document.getElementById("result");
+
+                            textInfo = ""
+
+                            if (gamesPastB.length > 0) { 
+                                const lastGameB = gamesPastB[gamesPastB.length - 1]; 
+                                const lastGameDateB = new Date(lastGameB.date); 
+                                const estOffset = 5 * 60 * 60 * 1000; // EST is UTC-5
+                                //const yesterday = new Date(); 
+                                //yesterday.setDate(yesterday.getDate() - 1); 
+                                const lastGameDateBEST = new Date(lastGameDateB.getTime() - estOffset); 
+                                const yesterdayBEST = new Date(); 
+                                yesterdayBEST.setDate(yesterdayBEST.getDate() - 1); 
+                                yesterdayBEST.setHours(0, 0, 0, 0); // Normalize to midnight
+                                // alert(lastGameDateBEST);
+                                // alert(yesterdayBEST);
+                                if (lastGameDateBEST.toDateString() === yesterdayBEST.toDateString()) {
+                                    // alert(lastGameDateBEST.toDateString());
+                                    // alert(yesterdayBEST.toDateString());
+                                    const orlandoMagic = lastGameB.competitions[0].competitors.find( team => team.team.abbreviation === "ORL" );
+                                    const opponent = lastGameB.competitions[0].competitors.find( team => team.team.abbreviation !== "ORL" ); 
+                                    const outcomeB = orlandoMagic.winner ? "won" : "lost"; 
+                                    //resultElementB.textContent += `The Orlando Magic ${outcome} against the ${opponent.team.displayName} yesterday!`;
+                                    resultElementB.innerHTML += `The Orlando Magic <span style="color: ${orlandoMagic.winner ? 'green' : 'red'};">${outcomeB}</span>
+                                     against the ${opponent.team.displayName} yesterday!<br>`;
+                                     if (outcomeB == "won") {
+                                         result2 = true;
+                                         resultElementB.innerHTML += `<br> There is Pizza tonight`;
+                                        alert(true);
+                                    }
+                                    // alert(true);
+                                 } 
+                                    else { 
+                                        document.getElementById("result").textContent += 
+                                        "The Orlando did not play yesterday."; } 
+                                    } else { document.getElementById("result").textContent += 
+                                        "No recent game information available.";
+                                    } }) 
+                                    .catch(error => { 
+                                        console.error("Error fetching data:", error); 
+                                        document.getElementById("result").textContent += 
+                                        "Unable to retrieve game information."; }); 
+                                        alert("87" + result1 || result2);
+                                        if (result1 || result2) {
+                                            resultElementB.innerHTML += `<br> There is Pizza tonight`;
+                                        }
+                    </script>
+
+                    <!-- script for declaring if there is half off pizza tonight -->
               </div>
           </div>
         </div>
