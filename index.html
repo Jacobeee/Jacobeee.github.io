@@ -183,6 +183,9 @@
                     <script>
                         var result1 = false;
                         var result2 = false;
+                        // const outcome = "";
+                        // const outcomeB = "";
+                        const resultElement = document.getElementById("result");
                         window.onload = function() {
                         fetch("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/teams/tb/schedule") 
                         .then(response => response.json()) 
@@ -190,14 +193,18 @@
                             const games = data.events; 
                             const now = new Date();
                             const gamesPast = games.filter(game => new Date(game.date) < now);
-                            const resultElement = document.getElementById("result");
+                            
+                            const upcomingGames = games.filter(game => new Date(game.date) > now); 
                             
                             
                             if (gamesPast.length > 0) { 
                                 const lastGame = gamesPast[gamesPast.length - 1]; 
+                                const nextGame = upcomingGames[0];
                                 const lastGameDate = new Date(lastGame.date); 
                                 const yesterday = new Date(); 
                                 yesterday.setDate(yesterday.getDate() - 1); 
+
+                                
                                 // alert(lastGameDate);
                                 // alert(gamesPast);
                                 if (lastGameDate.toDateString() === yesterday.toDateString()) { 
@@ -208,8 +215,12 @@
                                     
                                     const tampaBayL = lastGame.competitions[0].competitors.find( team => team.team.abbreviation === "TB" );
                                     const opponent = lastGame.competitions[0].competitors.find( team => team.team.abbreviation !== "TB" ); 
-                                    const outcome = tampaBayL.winner ? "won" : "lost"; 
-                                    resultElement.innerHTML += `The Tampa Bay Lightning ${outcome} against the ${opponent.team.displayName} yesterday!<br>`;
+                                    const outcome = tampaBayL.winner ? "won" : "lost";
+                                    const lightScore = tampaBayL.score.value;
+                                    const oppScore = opponent.score.value;
+                                    resultElement.innerHTML += `<br> The Tampa Bay Lightning <span style="color: ${tampaBayL.winner ? 'green' : 'red'};">${outcome}</span> 
+                                    against the ${opponent.team.displayName} yesterday!<br> Final Score: ${lightScore} - ${oppScore} <br> The next game the Lightning play will be 
+                                ${nextGame.date} <br>`;
                                     if (outcome == "won") {
                                         result1 = true;
                                         alert(true);
@@ -225,7 +236,7 @@
                                     .catch(error => { 
                                         console.error("Error fetching data:", error); 
                                         document.getElementById("result").textContent += 
-                                        "Unable to retrieve game information."; }); };
+                                        "Unable to retrieve game information."; }); ;
                     
                 
                     //<!-- script for finding Orlando Magic games -->
@@ -239,19 +250,22 @@
                             const now = new Date();
                             const gamesPastB = gamesB.filter(game => new Date(game.date) < now);
                             const resultElementB = document.getElementById("result");
-
+                            const upcomingGamesB = gamesB.filter(game => new Date(game.date) > now); 
                             textInfo = ""
 
                             if (gamesPastB.length > 0) { 
                                 const lastGameB = gamesPastB[gamesPastB.length - 1]; 
                                 const lastGameDateB = new Date(lastGameB.date); 
                                 const estOffset = 5 * 60 * 60 * 1000; // EST is UTC-5
+
                                 //const yesterday = new Date(); 
                                 //yesterday.setDate(yesterday.getDate() - 1); 
                                 const lastGameDateBEST = new Date(lastGameDateB.getTime() - estOffset); 
                                 const yesterdayBEST = new Date(); 
                                 yesterdayBEST.setDate(yesterdayBEST.getDate() - 1); 
                                 yesterdayBEST.setHours(0, 0, 0, 0); // Normalize to midnight
+                                const nextGameB = upcomingGamesB[0];
+                                
                                 // alert(lastGameDateBEST);
                                 // alert(yesterdayBEST);
                                 if (lastGameDateBEST.toDateString() === yesterdayBEST.toDateString()) {
@@ -260,19 +274,23 @@
                                     const orlandoMagic = lastGameB.competitions[0].competitors.find( team => team.team.abbreviation === "ORL" );
                                     const opponent = lastGameB.competitions[0].competitors.find( team => team.team.abbreviation !== "ORL" ); 
                                     const outcomeB = orlandoMagic.winner ? "won" : "lost"; 
+                                    const magScore = orlandoMagic.score.value; 
+                                    const oppScoreB = opponent.score.value;
+
                                     //resultElementB.textContent += `The Orlando Magic ${outcome} against the ${opponent.team.displayName} yesterday!`;
-                                    resultElementB.innerHTML += `The Orlando Magic <span style="color: ${orlandoMagic.winner ? 'green' : 'red'};">${outcomeB}</span>
-                                     against the ${opponent.team.displayName} yesterday!<br>`;
+                                    resultElement.innerHTML += `<br> The Orlando Magic <span style="color: ${orlandoMagic.winner ? 'green' : 'red'};">${outcomeB}</span>
+                                     against the ${opponent.team.displayName} yesterday!<br> Final Score: ${magScore} - ${oppScoreB} <br> The next game the Magic play will be 
+                                ${nextGameB.date} <br>`;
                                      if (outcomeB == "won") {
                                          result2 = true;
-                                         resultElementB.innerHTML += `<br> There is Pizza tonight`;
+                                         resultElement.innerHTML += `<br> There is Pizza tonight! <br>`;
                                         alert(true);
                                     }
                                     // alert(true);
                                  } 
                                     else { 
                                         document.getElementById("result").textContent += 
-                                        "The Orlando did not play yesterday."; } 
+                                        "The Orlando Magic did not play yesterday."; } 
                                     } else { document.getElementById("result").textContent += 
                                         "No recent game information available.";
                                     } }) 
@@ -281,12 +299,20 @@
                                         document.getElementById("result").textContent += 
                                         "Unable to retrieve game information."; }); 
                                         alert("87" + result1 || result2);
+                                        //alert(outcome + outcomeB);
                                         if (result1 || result2) {
-                                            resultElementB.innerHTML += `<br> There is Pizza tonight`;
+                                            resultElement.innerHTML += `<br> There is Pizza tonight <br>`;
                                         }
-                    </script>
 
+                                        //resultElement.innerHTML += `7 day pizza forecast`;
+                                    }
+                                    //<a href="index2.html"></a>
+                                    
+                    </script>
+                    <a><br> 7 day forecast (only counting Magic games) </a>
+                    <iframe src="index2.html" width="100%" height="500px" style="border:none;"></iframe>
                     <!-- script for declaring if there is half off pizza tonight -->
+                    
               </div>
           </div>
         </div>
