@@ -9,11 +9,9 @@
         h1 { color:rgb(255, 225, 0);
             text-align: center;
         }
-        strong { color:red
+        /* strong { color:red
 
-        }
-        body { background-color: rgb(0,0,128);
-        }
+        } */
 
         h2 {
         color: rgb(255, 225, 0); 
@@ -81,24 +79,36 @@
         display: block;
         }
 
-        #one:checked ~ .tabs #one-tab,
+        /* #one:checked ~ .tabs #one-tab,
         #two:checked ~ .tabs #two-tab,
         #three:checked ~ .tabs #three-tab,
         #four:checked ~ .tabs #four-tab {
         background: #fff;
         color: #000;
         border-top: 3px solid #32557f;
-        }
-        p {
+        } */
+        /* p {
             color: rgb(255, 225, 0);
-        }
+        } */
         .win { color: green; } .loss { color: red; }
         body {
             color: rgb(255, 225, 0);
+            background-color: rgb(0,0,128);
+            transition: background-color 0.5s, color 0.5s;
+        }
+        body.boring {
+            background-color: white; 
+            color: black;
         }
     </style>
 
     <body>
+        <button id="toggleButton">Toggle Color</button>
+        <script> 
+            window.onload = function() { 
+                const toggleButton = document.getElementById('toggleButton'); 
+                toggleButton.addEventListener('click', function() { document.body.classList.toggle('boring'); }); };
+        </script>
         <!-- <h1>hi<h1>
         <h1> Hello and welcome to my website </h1> 
         <h2> I will be showing you how to subscribe to my 

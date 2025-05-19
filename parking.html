@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+    </head>
+    <style>
+        h1 { color:rgb(255, 225, 0);
+            text-align: center;
+        }
+        /* strong { color:red
+
+        } */
+
+        h2 {
+        color: rgb(255, 225, 0); 
+        text-align: center;
+        font-size: 2em;
+        margin: 20px 0;
+        }
+
+        .warpper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        .tab {
+        cursor: pointer;
+        padding: 10px 20px; 
+        margin: 0px 2px;
+        background: #520b0b;
+        display: inline-block;
+        color: #fff;
+        border-radius: 3px 3px 0px 0px;
+        box-shadow: 0 0.5rem 0.8rem #00000080;
+        }
+
+        .panels {
+            background-color: rgb(103, 31, 17);
+        box-shadow: 0 2rem 2rem rgb(255, 225, 0);
+        min-height: 200px;
+        width: 100%;
+        max-width: 1500px;
+        border-radius: 3px;
+        overflow: hidden;
+        padding: 20px;
+        }
+
+        .panel {
+        display: none;
+        animation: fadein 0.8s;
+        }
+
+        @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+        }
+
+        .panel-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: rgb(255, 225, 0);
+        }
+
+        .radio {
+        display: none;
+        }
+
+        #one:checked ~ .panels #one-panel,
+        #two:checked ~ .panels #two-panel,
+        #three:checked ~ .panels #three-panel,
+        #four:checked ~ .panels #four-panel {
+        display: block;
+        }
+
+        /* #one:checked ~ .tabs #one-tab,
+        #two:checked ~ .tabs #two-tab,
+        #three:checked ~ .tabs #three-tab,
+        #four:checked ~ .tabs #four-tab {
+        background: #fff;
+        color: #000;
+        border-top: 3px solid #32557f;
+        } */
+        /* p {
+            color: rgb(255, 225, 0);
+        } */
+        .win { color: green; } .loss { color: red; }
+        body {
+            color: rgb(255, 225, 0);
+            background-color: rgb(220, 73, 24);
+            transition: background-color 0.5s, color 0.5s;
+        }
+        body.boring {
+            background-color: white; 
+            color: black;
+        }
+    </style>
+
+    <body>
+        <button id="toggleButton">Toggle Color</button>
+        <script> 
+            window.onload = function() { 
+                const toggleButton = document.getElementById('toggleButton'); 
+                toggleButton.addEventListener('click', function() { document.body.classList.toggle('boring'); }); };
+        </script>
+        <!-- <h1>hi<h1>
+        <h1> Hello and welcome to my website </h1> 
+        <h2> I will be showing you how to subscribe to my 
+        <strong> <a href="https://www.youtube.com/jacobtasticyt">YouTube </a> </strong>
+        <a href="example.com">test</a>
+        </h2>
+    <h3> lolololol <h3> -->
+
+        <h1>The Florida Tech Parking App</h1>
+        <div class="warpper">
+          <input class="radio" id="one" name="group" type="radio" checked>
+          <input class="radio" id="two" name="group" type="radio">
+          <input class="radio" id="three" name="group" type="radio">
+          <input class="radio" id="four" name="group" type="radio">
+        
+          <div class="tabs">
+            <label class="tab" id="one-tab" for="one">Parking Lot 1</label>
+            <label class="tab" id="two-tab" for="two">Parking Lot 2</label>
+            <label class="tab" id="three-tab" for="three">Weather</label>
+            <label class="tab" id="four-tab" for="four">Pizza?</label>
+          </div>
+        
+          <div class="panels">
+            <div class="panel" id="one-panel">
+                <div class="panel-title">Parking Lot 1</div>
+
+            </div>
+            <div class="panel" id="two-panel">
+              <div class="panel-title">Parking Lot 2</div>
+
+      
+            </div>
+            <div class="panel" id="three-panel">
+              <div class="panel-title">Weather</div>
+              <p>Content3</p>
+
+            </div>
+
+            <div class="panel" id="four-panel">
+
+              </div>
+          </div>
+        </div>
+
+
+
+    </body>
+</html>
