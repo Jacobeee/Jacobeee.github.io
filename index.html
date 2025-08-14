@@ -3,198 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style id="normal-theme">
-        body {
-            background-color: #fff;
-            color: #222;
-        }
-        h1, h2, .panel-title, p {
-            color: #222 !important;
-        }
-        .tab {
-            background: #eee;
-            color: #222;
-            border-top: 3px solid #888;
-        }
-        .panels {
-            background-color: #f5f5f5;
-            box-shadow: 0 2rem 2rem #888;
-        }
-    </style>
-    <style>
-        h1 { color:rgb(255, 225, 0);
-            text-align: center;
-        }
-        strong { color:red
-        }
-        body { background-color: rgb(0,0,128);
-        }
-        h2 {
-        color: rgb(255, 225, 0); 
-        text-align: center;
-        font-size: 2em;
-        margin: 20px 0;
-        }
-        .warpper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        }
-        .tab {
-        cursor: pointer;
-        padding: 10px 20px; 
-        margin: 0px 2px;
-        background: #32557f;
-        display: inline-block;
-        color: #fff;
-        border-radius: 3px 3px 0px 0px;
-        box-shadow: 0 0.5rem 0.8rem #00000080;
-        }
-        .panels {
-            background-color: rgb(0,0,128);
-        box-shadow: 0 2rem 2rem rgb(255, 225, 0);
-        min-height: 200px;
-        width: 100%;
-        max-width: 1500px;
-        border-radius: 3px;
-        overflow: hidden;
-        padding: 20px;
-        }
-        .panel {
-        display: none;
-        animation: fadein 0.8s;
-        }
-        @keyframes fadein {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-        }
-        .panel-title {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: rgb(255, 225, 0);
-        }
-        .radio {
-        display: none;
-        }
-        #one:checked ~ .panels #one-panel,
-        #two:checked ~ .panels #two-panel,
-        #three:checked ~ .panels #three-panel,
-        #four:checked ~ .panels #four-panel {
-        display: block;
-        }
-        #one:checked ~ .tabs #one-tab,
-        #two:checked ~ .tabs #two-tab,
-        #three:checked ~ .tabs #three-tab,
-        #four:checked ~ .tabs #four-tab {
-        background: #fff;
-        color: #000;
-        border-top: 3px solid #32557f;
-        }
-        p {
-            color: rgb(255, 225, 0);
-        }
-        .win { color: green; } .loss { color: red; }
-        body {
-            color: rgb(255, 225, 0);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-    <style>
-        h1 { color:rgb(255, 225, 0);
-            text-align: center;
-        }
-        strong { color:red
-
-        }
-        body { background-color: rgb(0,0,128);
-        }
-
-        h2 {
-        color: rgb(255, 225, 0); 
-        text-align: center;
-        font-size: 2em;
-        margin: 20px 0;
-        }
-
-        .warpper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        }
-
-        .tab {
-        cursor: pointer;
-        padding: 10px 20px; 
-        margin: 0px 2px;
-        background: #32557f;
-        display: inline-block;
-        color: #fff;
-        border-radius: 3px 3px 0px 0px;
-        box-shadow: 0 0.5rem 0.8rem #00000080;
-        }
-
-        .panels {
-            background-color: rgb(0,0,128);
-        box-shadow: 0 2rem 2rem rgb(255, 225, 0);
-        min-height: 200px;
-        width: 100%;
-        max-width: 1500px;
-        border-radius: 3px;
-        overflow: hidden;
-        padding: 20px;
-        }
-
-        .panel {
-        display: none;
-        animation: fadein 0.8s;
-        }
-
-        @keyframes fadein {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-        }
-
-        .panel-title {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: rgb(255, 225, 0);
-        }
-
-        .radio {
-        display: none;
-        }
-
-        #one:checked ~ .panels #one-panel,
-        #two:checked ~ .panels #two-panel,
-        #three:checked ~ .panels #three-panel,
-        #four:checked ~ .panels #four-panel {
-        display: block;
-        }
-
-        #one:checked ~ .tabs #one-tab,
-        #two:checked ~ .tabs #two-tab,
-        #three:checked ~ .tabs #three-tab,
-        #four:checked ~ .tabs #four-tab {
-        background: #fff;
-        color: #000;
-        border-top: 3px solid #32557f;
-        }
-        p {
-            color: rgb(255, 225, 0);
-        }
-        .win { color: green; } .loss { color: red; }
-        body {
-            color: rgb(255, 225, 0);
-        }
-    </style>
 
     <body>
         <button id="toggle-theme" style="position:fixed;top:10px;right:10px;z-index:1000;">Toggle Color Scheme</button>
@@ -206,7 +16,7 @@
         </h2>
     <h3> lolololol <h3> -->
 
-        <h1>The Jacobtastic Website</h1>
+    <h1 class="center-title">The Jacobtastic Website</h1>
         <div class="warpper">
           <input class="radio" id="one" name="group" type="radio" checked>
           <input class="radio" id="two" name="group" type="radio">
@@ -223,7 +33,7 @@
           <div class="panels">
             <div class="panel" id="one-panel">
                 <div class="panel-title">Fortnite</div>
-        <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
         <div class="g-ytsubscribe" data-channelid="UCK1_8q0YhMZmXZXP7HEFJDQ" data-layout="full" data-count="default"></div>
               
               <p>Go check this link to see if I'm live on YouTube! \/</p>
@@ -279,135 +89,6 @@
                     <div id="result"></div>
 
                     <!-- script for finding Tampa Bay Lightning games -->
-                    <script>
-                        var result1 = false;
-                        var result2 = false;
-                        // const outcome = "";
-                        // const outcomeB = "";
-                        const resultElement = document.getElementById("result");
-                        window.onload = function() {
-                        fetch("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/teams/tb/schedule") 
-                        .then(response => response.json()) 
-                        .then(data => { 
-                            const games = data.events; 
-                            const now = new Date();
-                            const gamesPast = games.filter(game => new Date(game.date) < now);
-                            
-                            const upcomingGames = games.filter(game => new Date(game.date) > now); 
-                            
-                            
-                            if (gamesPast.length > 0) { 
-                                const lastGame = gamesPast[gamesPast.length - 1]; 
-                                const nextGame = upcomingGames[0];
-                                const lastGameDate = new Date(lastGame.date); 
-                                const yesterday = new Date(); 
-                                yesterday.setDate(yesterday.getDate() - 1); 
-
-                                
-                                // alert(lastGameDate);
-                                // alert(gamesPast);
-                                if (lastGameDate.toDateString() === yesterday.toDateString()) { 
-                                    // const outcome = lastGame.competitions[0].competitors.find( 
-                                    //     team => team.team.abbreviation === "TB" )
-                                    // .win ? "won" : "lost"; document.getElementById("result").
-                                    // textContent = `The Tampa Bay Lightning ${outcome} yesterday!`;
-                                    
-                                    const tampaBayL = lastGame.competitions[0].competitors.find( team => team.team.abbreviation === "TB" );
-                                    const opponent = lastGame.competitions[0].competitors.find( team => team.team.abbreviation !== "TB" ); 
-                                    const outcome = tampaBayL.winner ? "won" : "lost";
-                                    const lightScore = tampaBayL.score.value;
-                                    const oppScore = opponent.score.value;
-                                    resultElement.innerHTML += `<br> The Tampa Bay Lightning <span style="color: ${tampaBayL.winner ? 'green' : 'red'};">${outcome}</span> 
-                                    against the ${opponent.team.displayName} yesterday!<br> Final Score: ${lightScore} - ${oppScore} <br> The next game the Lightning play will be 
-                                ${nextGame.date} <br>`;
-                                    if (outcome == "won") {
-                                        result1 = true;
-                                        alert(true);
-                                    }
-                                    
-                                 } 
-                                    else { 
-                                        document.getElementById("result").textContent += 
-                                        "The Tampa Bay Lightning did not play yesterday."; } 
-                                    } else { document.getElementById("result").textContent += 
-                                        "No recent game information available.";
-                                    } }) 
-                                    .catch(error => { 
-                                        console.error("Error fetching data:", error); 
-                                        document.getElementById("result").textContent += 
-                                        "Unable to retrieve game information."; }); ;
-                    
-                
-                    //<!-- script for finding Orlando Magic games -->
-
-                    
-                        //window.onload = function() {
-                        fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/orl/schedule") 
-                        .then(response => response.json()) 
-                        .then(data => { 
-                            const gamesB = data.events; 
-                            const now = new Date();
-                            const gamesPastB = gamesB.filter(game => new Date(game.date) < now);
-                            const resultElementB = document.getElementById("result");
-                            const upcomingGamesB = gamesB.filter(game => new Date(game.date) > now); 
-                            textInfo = ""
-
-                            if (gamesPastB.length > 0) { 
-                                const lastGameB = gamesPastB[gamesPastB.length - 1]; 
-                                const lastGameDateB = new Date(lastGameB.date); 
-                                const estOffset = 5 * 60 * 60 * 1000; // EST is UTC-5
-
-                                //const yesterday = new Date(); 
-                                //yesterday.setDate(yesterday.getDate() - 1); 
-                                const lastGameDateBEST = new Date(lastGameDateB.getTime() - estOffset); 
-                                const yesterdayBEST = new Date(); 
-                                yesterdayBEST.setDate(yesterdayBEST.getDate() - 1); 
-                                yesterdayBEST.setHours(0, 0, 0, 0); // Normalize to midnight
-                                const nextGameB = upcomingGamesB[0];
-                                
-                                // alert(lastGameDateBEST);
-                                // alert(yesterdayBEST);
-                                if (lastGameDateBEST.toDateString() === yesterdayBEST.toDateString()) {
-                                    // alert(lastGameDateBEST.toDateString());
-                                    // alert(yesterdayBEST.toDateString());
-                                    const orlandoMagic = lastGameB.competitions[0].competitors.find( team => team.team.abbreviation === "ORL" );
-                                    const opponent = lastGameB.competitions[0].competitors.find( team => team.team.abbreviation !== "ORL" ); 
-                                    const outcomeB = orlandoMagic.winner ? "won" : "lost"; 
-                                    const magScore = orlandoMagic.score.value; 
-                                    const oppScoreB = opponent.score.value;
-
-                                    //resultElementB.textContent += `The Orlando Magic ${outcome} against the ${opponent.team.displayName} yesterday!`;
-                                    resultElement.innerHTML += `<br> The Orlando Magic <span style="color: ${orlandoMagic.winner ? 'green' : 'red'};">${outcomeB}</span>
-                                     against the ${opponent.team.displayName} yesterday!<br> Final Score: ${magScore} - ${oppScoreB} <br> The next game the Magic play will be 
-                                ${nextGameB.date} <br>`;
-                                     if (outcomeB == "won") {
-                                         result2 = true;
-                                         resultElement.innerHTML += `<br> There is Pizza tonight! <br>`;
-                                        alert(true);
-                                    }
-                                    // alert(true);
-                                 } 
-                                    else { 
-                                        document.getElementById("result").textContent += 
-                                        "The Orlando Magic did not play yesterday."; } 
-                                    } else { document.getElementById("result").textContent += 
-                                        "No recent game information available.";
-                                    } }) 
-                                    .catch(error => { 
-                                        console.error("Error fetching data:", error); 
-                                        document.getElementById("result").textContent += 
-                                        "Unable to retrieve game information."; }); 
-                                        alert("87" + result1 || result2);
-                                        //alert(outcome + outcomeB);
-                                        if (result1 || result2) {
-                                            resultElement.innerHTML += `<br> There is Pizza tonight <br>`;
-                                        }
-
-                                        //resultElement.innerHTML += `7 day pizza forecast`;
-                                    }
-                                    //<a href="index2.html"></a>
-                                    
-                    </script>
                     <a><br> 7 day forecast (only counting Magic games) </a>
                     <iframe src="index2.html" width="100%" height="500px" style="border:none;"></iframe>
                     <!-- script for declaring if there is half off pizza tonight -->
@@ -418,26 +99,7 @@
 
 
 
-    <script>
-    // Theme toggle logic
-    const toggleBtn = document.getElementById('toggle-theme');
-    let customMode = false;
-    toggleBtn.onclick = function() {
-        customMode = !customMode;
-        if (customMode) {
-            document.body.style.backgroundColor = 'rgb(0,0,128)';
-            document.body.style.color = 'rgb(255,225,0)';
-            document.querySelectorAll('h1, h2, .panel-title, p').forEach(el => {
-                el.style.color = 'rgb(255,225,0)';
-            });
-        } else {
-            document.body.style.backgroundColor = '#fff';
-            document.body.style.color = '#222';
-            document.querySelectorAll('h1, h2, .panel-title, p').forEach(el => {
-                el.style.color = '#222';
-            });
-        }
-    };
-    </script>
+    <script src="main.js"></script>
+    <script src="sports.js"></script>
     </body>
 </html>
