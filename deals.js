@@ -10,7 +10,7 @@ const sportsDeals = [
           condition: "10+ strikeouts during a regular season home game",
           check: async () => {
             // ESPN Rays schedule API endpoint
-            const apiUrl = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/tb/schedule";
+                const apiUrl = "https://corsproxy.io/?https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/tb/schedule";
             try {
               const response = await fetch(apiUrl);
               const data = await response.json();
