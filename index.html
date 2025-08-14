@@ -322,17 +322,21 @@
 
     <script>
     // Theme toggle logic
-    const toggleBtn = document.getElementById('toggle-theme');
-    const normalTheme = document.getElementById('normal-theme');
-    let normalMode = false;
-    toggleBtn.onclick = function() {
-        normalMode = !normalMode;
-        if (normalMode) {
-            normalTheme.removeAttribute('disabled');
-        } else {
-            normalTheme.setAttribute('disabled', '');
+    window.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('toggle-theme');
+        const normalTheme = document.getElementById('normal-theme');
+        let normalMode = false;
+        if (toggleBtn && normalTheme) {
+            toggleBtn.onclick = function() {
+                normalMode = !normalMode;
+                if (normalMode) {
+                    normalTheme.removeAttribute('disabled');
+                } else {
+                    normalTheme.setAttribute('disabled', '');
+                }
+            };
         }
-    };
+    });
     </script>
     </body>
 </html>
