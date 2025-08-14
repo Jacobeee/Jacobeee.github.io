@@ -15,14 +15,12 @@ const sportsDeals = [
               const response = await fetch(apiUrl);
               const data = await response.json();
               const games = data.events || [];
-              // Find most recent regular season home game
               const now = new Date();
               let latestGame = null;
               for (let i = games.length - 1; i >= 0; i--) {
                 const g = games[i];
-                // Check for home game, regular season, and completed
                 const isHome = g.competitions?.[0]?.venue?.id && g.competitions[0].competitors?.[0]?.homeAway === "home";
-                const isRegular = g.season?.type === 2; // 2 = regular season
+                const isRegular = g.season?.type === 2;
                 const isFinal = g.status?.type?.completed;
                 if (isHome && isRegular && isFinal) {
                   latestGame = g;
@@ -30,10 +28,9 @@ const sportsDeals = [
                 }
               }
               if (!latestGame) return "offseason";
-              // Get game date
               const gameDate = new Date(latestGame.date);
               const daysSince = (now - gameDate) / (1000 * 60 * 60 * 24);
-              if (daysSince > 5) return "not triggered";
+              if (daysSince > 7) return "offseason";
               // Check Rays pitcher strikeouts
               const stats = latestGame.competitions?.[0]?.competitors?.find(c => c.team?.abbreviation === "TB")?.statistics;
               let strikeouts = 0;
@@ -44,8 +41,8 @@ const sportsDeals = [
                   if (kObj) strikeouts = Number(kObj.value);
                 }
               }
-              if (strikeouts >= 10) return "active";
-              return "not triggered";
+              if (strikeouts >= 10 && daysSince <= 5) return "active";
+              return "not active";
             } catch (e) {
               return "offseason";
             }
@@ -73,10 +70,67 @@ const sportsDeals = [
       {
         name: "Papa John's 50% Off",
         condition: "Rays score 6+ runs",
-        check: async () => {
-          // Placeholder: implement ESPN API logic for runs
-          return "offseason";
-        },
+            check: async () => {
+              // ESPN Rays schedule API endpoint
+              const apiUrl = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/tb/schedule";
+              try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const games = data.events || [];
+                const now = new Date();
+                // Find the most recent qualifying game (Rays scored 6+ runs)
+                let qualifyingGame = null;
+                let prevQualifyingGame = null;
+                for (let i = games.length - 1; i >= 0; i--) {
+                  const g = games[i];
+                  const isRegular = g.season?.type === 2;
+                  const isFinal = g.status?.type?.completed;
+                  if (isRegular && isFinal) {
+                    const competitors = g.competitions?.[0]?.competitors || [];
+                    const rays = competitors.find(c => c.team?.abbreviation === "TB");
+                    const raysScore = rays?.score ? Number(rays.score) : 0;
+                    if (raysScore >= 6) {
+                      const gameDate = new Date(g.date);
+                      const daysSince = (now - gameDate) / (1000 * 60 * 60 * 24);
+                      if (!qualifyingGame && daysSince <= 7) {
+                        qualifyingGame = { game: g, gameDate, daysSince };
+                      } else if (!prevQualifyingGame && qualifyingGame) {
+                        prevQualifyingGame = { game: g, gameDate, daysSince };
+                        break;
+                      }
+                    }
+                  }
+                }
+                if (!qualifyingGame) return "offseason";
+                // Only valid on the day after a qualifying game, unless previous day was also qualifying
+                const today = now;
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+                const qDate = qualifyingGame.gameDate;
+                const isYesterday = qDate.getUTCFullYear() === yesterday.getUTCFullYear() && qDate.getUTCMonth() === yesterday.getUTCMonth() && qDate.getUTCDate() === yesterday.getUTCDate();
+                if (isYesterday) {
+                  // Check if previous day was also qualifying
+                  if (prevQualifyingGame) {
+                    const prevDate = prevQualifyingGame.gameDate;
+                    const prevIsYesterday = prevDate.getUTCFullYear() === yesterday.getUTCFullYear() && prevDate.getUTCMonth() === yesterday.getUTCMonth() && prevDate.getUTCDate() === yesterday.getUTCDate();
+                    if (prevIsYesterday) return "active";
+                  }
+                  return "active";
+                }
+                // If qualifying game is today, show hours until midnight UTC
+                const isToday = qDate.getUTCFullYear() === today.getUTCFullYear() && qDate.getUTCMonth() === today.getUTCMonth() && qDate.getUTCDate() === today.getUTCDate();
+                if (isToday) {
+                  // Calculate hours until midnight UTC
+                  const midnightUTC = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() + 1, 0, 0, 0));
+                  const hoursUntil = (midnightUTC - today) / (1000 * 60 * 60);
+                  return `Deal will be activated in ${hoursUntil.toFixed(1)} hours (at midnight UTC)`;
+                }
+                // Otherwise, not active
+                return "not active";
+              } catch (e) {
+                return "offseason";
+              }
+            },
         instructions: "Order online with code RAYS6 the day after the game."
       }
     ]
