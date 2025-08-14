@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    </style>
         <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
@@ -99,6 +99,7 @@
     </style>
 
     <body>
+        <button id="toggle-theme" style="position:fixed;top:10px;right:10px;z-index:1000;">Toggle Color Scheme</button>
         <!-- <h1>hi<h1>
         <h1> Hello and welcome to my website </h1> 
         <h2> I will be showing you how to subscribe to my 
@@ -319,5 +320,19 @@
 
 
 
+    <script>
+    // Theme toggle logic
+    const toggleBtn = document.getElementById('toggle-theme');
+    const normalTheme = document.getElementById('normal-theme');
+    let normalMode = false;
+    toggleBtn.onclick = function() {
+        normalMode = !normalMode;
+        if (normalMode) {
+            normalTheme.removeAttribute('disabled');
+        } else {
+            normalTheme.setAttribute('disabled', '');
+        }
+    };
+    </script>
     </body>
 </html>
