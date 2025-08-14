@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style id="normal-theme" disabled>
+    <style id="normal-theme">
         body {
             background-color: #fff;
             color: #222;
@@ -421,18 +421,23 @@
     <script>
     // Theme toggle logic
     const toggleBtn = document.getElementById('toggle-theme');
-    const normalTheme = document.getElementById('normal-theme');
-    let normalMode = false;
-    if (toggleBtn && normalTheme) {
-        toggleBtn.onclick = function() {
-            normalMode = !normalMode;
-            if (normalMode) {
-                normalTheme.removeAttribute('disabled');
-            } else {
-                normalTheme.setAttribute('disabled', '');
-            }
-        };
-    }
+    let customMode = false;
+    toggleBtn.onclick = function() {
+        customMode = !customMode;
+        if (customMode) {
+            document.body.style.backgroundColor = 'rgb(0,0,128)';
+            document.body.style.color = 'rgb(255,225,0)';
+            document.querySelectorAll('h1, h2, .panel-title, p').forEach(el => {
+                el.style.color = 'rgb(255,225,0)';
+            });
+        } else {
+            document.body.style.backgroundColor = '#fff';
+            document.body.style.color = '#222';
+            document.querySelectorAll('h1, h2, .panel-title, p').forEach(el => {
+                el.style.color = '#222';
+            });
+        }
+    };
     </script>
     </body>
 </html>
