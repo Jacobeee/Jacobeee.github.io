@@ -1,10 +1,108 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style id="normal-theme" disabled>
+        body {
+            background-color: #fff;
+            color: #222;
+        }
+        h1, h2, .panel-title, p {
+            color: #222 !important;
+        }
+        .tab {
+            background: #eee;
+            color: #222;
+            border-top: 3px solid #888;
+        }
+        .panels {
+            background-color: #f5f5f5;
+            box-shadow: 0 2rem 2rem #888;
+        }
     </style>
-        <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-    </head>
+    <style>
+        h1 { color:rgb(255, 225, 0);
+            text-align: center;
+        }
+        strong { color:red
+        }
+        body { background-color: rgb(0,0,128);
+        }
+        h2 {
+        color: rgb(255, 225, 0); 
+        text-align: center;
+        font-size: 2em;
+        margin: 20px 0;
+        }
+        .warpper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        .tab {
+        cursor: pointer;
+        padding: 10px 20px; 
+        margin: 0px 2px;
+        background: #32557f;
+        display: inline-block;
+        color: #fff;
+        border-radius: 3px 3px 0px 0px;
+        box-shadow: 0 0.5rem 0.8rem #00000080;
+        }
+        .panels {
+            background-color: rgb(0,0,128);
+        box-shadow: 0 2rem 2rem rgb(255, 225, 0);
+        min-height: 200px;
+        width: 100%;
+        max-width: 1500px;
+        border-radius: 3px;
+        overflow: hidden;
+        padding: 20px;
+        }
+        .panel {
+        display: none;
+        animation: fadein 0.8s;
+        }
+        @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+        }
+        .panel-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: rgb(255, 225, 0);
+        }
+        .radio {
+        display: none;
+        }
+        #one:checked ~ .panels #one-panel,
+        #two:checked ~ .panels #two-panel,
+        #three:checked ~ .panels #three-panel,
+        #four:checked ~ .panels #four-panel {
+        display: block;
+        }
+        #one:checked ~ .tabs #one-tab,
+        #two:checked ~ .tabs #two-tab,
+        #three:checked ~ .tabs #three-tab,
+        #four:checked ~ .tabs #four-tab {
+        background: #fff;
+        color: #000;
+        border-top: 3px solid #32557f;
+        }
+        p {
+            color: rgb(255, 225, 0);
+        }
+        .win { color: green; } .loss { color: red; }
+        body {
+            color: rgb(255, 225, 0);
+        }
+    </style>
+</head>
     <style>
         h1 { color:rgb(255, 225, 0);
             text-align: center;
@@ -322,21 +420,19 @@
 
     <script>
     // Theme toggle logic
-    window.addEventListener('DOMContentLoaded', function() {
-        const toggleBtn = document.getElementById('toggle-theme');
-        const normalTheme = document.getElementById('normal-theme');
-        let normalMode = false;
-        if (toggleBtn && normalTheme) {
-            toggleBtn.onclick = function() {
-                normalMode = !normalMode;
-                if (normalMode) {
-                    normalTheme.removeAttribute('disabled');
-                } else {
-                    normalTheme.setAttribute('disabled', '');
-                }
-            };
-        }
-    });
+    const toggleBtn = document.getElementById('toggle-theme');
+    const normalTheme = document.getElementById('normal-theme');
+    let normalMode = false;
+    if (toggleBtn && normalTheme) {
+        toggleBtn.onclick = function() {
+            normalMode = !normalMode;
+            if (normalMode) {
+                normalTheme.removeAttribute('disabled');
+            } else {
+                normalTheme.setAttribute('disabled', '');
+            }
+        };
+    }
     </script>
     </body>
 </html>
